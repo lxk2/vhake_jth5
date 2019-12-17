@@ -40,6 +40,7 @@ service.interceptors.request.use(
   },
   error => {
     // do something with request error
+    // eslint-disable-next-line
     console.log(error);
     return Promise.reject(error);
   }
@@ -54,6 +55,7 @@ service.interceptors.response.use(
     return res;
   },
   error => {
+    // eslint-disable-next-line
     console.log('err' + error); // for debug
     Notify({
       type: 'danger',

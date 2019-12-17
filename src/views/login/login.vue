@@ -15,7 +15,7 @@
       svg-icon(v-if="checked" iconClass="check_on" @click="checked = !checked" className="svg")
       svg-icon(v-else iconClass="check_off" @click="checked = !checked" className="svg")
       p 登录表示你同意
-        span(@click="toUserAgreement") 《用户协议》
+        i(@click="toUserAgreement") 《用户协议》
 
 </template>
 
@@ -29,7 +29,9 @@ export default {
   components: {
     SvgIcon
   },
-  created() {}
+  created() {
+    this.redirect = this.$route.query.redirect || '';
+  }
 };
 </script>
 

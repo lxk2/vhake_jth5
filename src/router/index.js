@@ -23,6 +23,13 @@ const routes = [
         component: () => import(
           '../views/user/user'
         )
+      },
+      {
+        path: '/projectDetail',
+        name: 'projectDetail',
+        component: () => import(
+          '../views/projectDetail/projectDetail'
+        )
       }
     ]
   },
@@ -31,6 +38,20 @@ const routes = [
     name: 'login',
     component: () => import(
       '../views/login/login'
+    )
+  },
+  {
+    path: '/userAgreement',
+    name: 'userAgreement',
+    component: () => import(
+      '../views/userAgreement/userAgreement'
+    )
+  },
+  {
+    path: '/aboutUs',
+    name: 'aboutUs',
+    component: () => import(
+      '../views/aboutUs/aboutUs'
     )
   }
 ];

@@ -60,4 +60,18 @@ export default {
   background-color currentColor
   mask-size cover!important
   display inline-block
+
+.svg
+  display block
+  width 40px
+  height 40px
+  position relative
+  top -2.6px
+
+.cellSvg
+  width 35px
+  height 35px
+  display block
+  position relative
+  top -3px
 </style>

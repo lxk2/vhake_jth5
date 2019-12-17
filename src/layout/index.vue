@@ -1,7 +1,7 @@
 <template lang="pug">
   div
-    router-view(:style="{ paddingBottom: `${tabberHeight}px`, minHeight: '100vh', boxSizing: 'border-box' }")
-    van-tabbar(v-model="active" :safe-area-inset-bottom="true" :route="true" v-show="[0, 1].indexOf(active) !== -1" ref="tabbar")
+    router-view(:style="{ marginBottom: `${tabberHeight}px`, minHeight: `calc(100vh - ${tabberHeight}px)`, boxSizing: 'border-box' }" :tabberHeight="tabberHeight")
+    van-tabbar(:value="active" :safe-area-inset-bottom="true" :route="true" v-show="[0, 1].indexOf(active) !== -1" ref="tabbar")
       van-tabbar-item(to="/" :replace="isReplace")
         span 全部项目
         svg-icon(slot="icon" slot-scope="props" :iconClass="props.active ? 'project_on' : 'project_off'" svgStyle="width: 18px;height: 18px;")
@@ -34,7 +34,7 @@ export default {
       'isReplace'
     ])
   },
-  created() {
+  updated() { // DOM 更新后
     this.$nextTick(() => {
       this.tabberHeight = this.$refs.tabbar.$el.offsetHeight;
     });

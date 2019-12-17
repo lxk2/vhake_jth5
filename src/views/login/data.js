@@ -5,6 +5,7 @@ export default () => {
     mobile: '',
     code: '',
     acI: 0,
-    checked: true
+    checked: true,
+    redirect: ''
   };
 };
