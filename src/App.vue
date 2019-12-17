@@ -18,4 +18,7 @@
 .active
   .van-field__control
     color #2497ff
+
+.van-cell:not(:last-child)::after
+  border-bottom none
 </style>

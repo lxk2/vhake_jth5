@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.main
     div.logo
       img(src="@/assets/Bitmap.png")
 
