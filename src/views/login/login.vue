@@ -5,10 +5,10 @@
 
     div.form
       div.form-item(:class="{ active: mobile || acI === 1 }")
-        input(placeholder="请输入正确手机号" v-model="mobile" type="number" @focus="acI = 1" @blur="acI = 0")
+        van-field(placeholder="请输入正确手机号" v-model="mobile" type="number" @focus="acI = 1" @blur="acI = 0" :style="{ fontSize: '0.4rem', padding: '0 0.1333333333333rem' }")
         div.get-code(@click="getCode") {{ codeTips }}
       div.form-item(:class="{ active: code || acI === 2 }")
-        input.cols-12(placeholder="请输入正确的手机验证码" v-model="code" type="number" @blur="acI = 0" @focus="acI = 2")
+        van-field(placeholder="请输入正确的手机验证码" v-model="code" type="number" @blur="acI = 0" @focus="acI = 2" :style="{ fontSize: '0.4rem', padding: '0 0.1333333333333rem' }")
 
     div.btn(@click="submitForm") 登录
     div.tips
@@ -23,6 +23,9 @@
 import data from './data';
 import methods from './methods';
 import SvgIcon from '@/components/SvgIcon';
+import Vue from 'vue';
+import { Field } from 'vant';
+Vue.use(Field);
 export default {
   data,
   methods,

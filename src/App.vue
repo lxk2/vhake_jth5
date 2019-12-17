@@ -12,4 +12,10 @@
 .van-tabbar
   border-top 1px solid #D8D8D8
 
+.van-field__control
+  font-size 30px
+
+.active
+  .van-field__control
+    color #2497ff
 </style>
