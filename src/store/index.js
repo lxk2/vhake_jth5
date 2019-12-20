@@ -1,21 +1,22 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { getToken, setToken, removeToken } from '@/utils/auth';
-import { login, getInfo, logOut } from '@/api/user';
-import { SUCCESS_CODE } from '@/utils/statusCode';
+import {
+  SUCCESS_CODE
+} from '@/utils/statusCode';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    token: getToken(),
     userInfo: {},
     active: 0,
-    isReplace: false
+    isReplace: false,
+    mob: ''
   },
   mutations: {
-    SET_TOKEN: (state, value) => {
-      state.token = value;
+    SET_MOB: (state, value) => {
+      sessionStorage.setItem('Mob', value);
+      state.mob = value;
     },
     SET_USERINFO: (state, userInfo) => {
       state.userInfo = userInfo;
@@ -28,60 +29,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    // user login
-    login({ commit }, userInfo) {
-      const { username, password } = userInfo;
-      return new Promise((resolve, reject) => {
-        login({ username: username.trim(), password })
-          .then(response => {
-            const { data } = response;
-            commit('SET_TOKEN', data.token);
-            setToken(data.token);
-            resolve();
-          })
-          .catch(error => {
-            reject(error);
-          });
-      });
-    },
-    // get user info
-    getInfo({ commit }) {
-      return new Promise((resolve, reject) => {
-        getInfo()
-          .then(response => {
-            const { data, msg } = response;
-            if (!data) {
-              reject(msg);
-            }
-            commit('SET_USERINFO', data);
-            resolve(data);
-          })
-          .catch(error => {
-            reject(error);
-          });
-      });
-    },
-    // user log out
-    logOut({ commit }) {
-      return new Promise((resolve, reject) => {
-        logOut()
-          .then(response => {
-            const { code, msg } = response;
-            if (code === SUCCESS_CODE) {
-              removeToken();
-              commit('SET_TOKEN', '');
-              resolve(msg);
-            } else {
-              reject(msg);
-            }
-          })
-          .catch(error => {
-            reject(error);
-          });
-      });
-    },
     // 设置 active
-    setActive({ commit }, routeName, fromRouteName) {
+    setActive({
+      commit
+    }, routeName, fromRouteName) {
       let index = 0;
       switch (routeName) {
         case 'index':
@@ -105,9 +56,5 @@ export default new Vuex.Store({
       });
     }
   },
-  modules: {
-  },
-  getters: {
-    token: () => getToken()
-  }
+  modules: {}
 });

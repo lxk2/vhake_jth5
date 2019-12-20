@@ -40,5 +40,18 @@ module.exports = {
         ]
       }
     }
+  },
+  devServer: {
+    proxy: {
+      // 配置跨域
+      '/api': {
+        target: 'http://labor.lddzf.com',
+        ws: false,
+        changeOrigin: true
+        // pathRewrite: {
+        //   '^/api': '/'
+        // }
+      }
+    }
   }
 };

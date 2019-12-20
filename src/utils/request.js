@@ -1,4 +1,5 @@
 import axios from 'axios';
+import qs from 'qs';
 
 import {
   Loading
@@ -12,8 +13,6 @@ import {
   BASE_URL
 } from './statusCode';
 
-import store from '@/store';
-
 let loadingInstance = null;
 
 // 创建axios实例
@@ -21,7 +20,7 @@ const service = axios.create({
   baseURL: BASE_URL, // url = base url + request url
   timeout: 7000, // 请求超时时间
   headers: {
-    'Content-Type': 'application/json;charset=UTF-8'
+    'Content-Type': 'application/x-www-form-urlencoded'
   }
 });
 
@@ -32,9 +31,12 @@ service.interceptors.request.use(
     loadingInstance = Loading.service({
       lock: true
     });
-    let token = store.getters.token;
-    if (token) {
-      config.headers['X-Token'] = token;
+    // let token = store.getters.token;
+    // if (token) {
+    //   config.headers['X-Token'] = token;
+    // }
+    if (config.data) {
+      config.data = qs.stringify(config.data);
     }
     return config;
   },
@@ -55,6 +57,7 @@ service.interceptors.response.use(
     return res;
   },
   error => {
+    loadingInstance.close();
     // eslint-disable-next-line
     console.log('err' + error); // for debug
     Notify({

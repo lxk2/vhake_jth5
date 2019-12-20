@@ -9,11 +9,11 @@
     div.content
       van-pull-refresh(v-model="isRefresh" @refresh="onRefresh")
         van-list(v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false" :style="{ minHeight: `calc(100vh - ${tabberHeight}px - ${topicHeight}px)` }")
-          div.tr(v-for="(item, key) in 40" :key="key" @click="toProjectDetail")
-            div.x-td.td 广东省向荣企业公司有限责任分公司
-            div.x-td.td 960000元
-            div.x-td.td 480000元
-            div.x-td.td 50%
+          div.tr(v-for="(item) in list" :key="item.id" @click="toProjectDetail(item.id)")
+            div.x-td.td {{ item.contract_name }}
+            div.x-td.td {{ item.contract_price }}元
+            div.x-td.td {{ item.sum_money }}元
+            div.x-td.td {{ item.back_rate }}
 </template>
 
 <script>
@@ -27,6 +27,7 @@ export default {
   methods,
   components: {},
   created() {
+    this.getPageData();
     this.$nextTick(() => {
       this.topicHeight = document.getElementById('topic').offsetHeight;
     });
