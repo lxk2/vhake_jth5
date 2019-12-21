@@ -38,12 +38,12 @@
       div.item
         div.left 业务员名称：
         div.right {{ netData.login_name }}
-      // div.item
-      //   div.left 已收款：
-      //   div.right {{ netData.sum_money || 0 }}元
-      // div.item
-      //   div.left 回款进度：
-      //   div.right {{ netData.back_rate }}
+      div.item
+        div.left 已收款：
+        div.right {{ netData.sum_money || 0 }}元
+      div.item
+        div.left 回款进度：
+        div.right {{ netData.back_rate }}
 
     div.title 开票记录
     div.content(v-for="(item, index) in netData.commission_one" :key="item.id" :class="{ cell: index < netData.commission_one.length - 1 }")
