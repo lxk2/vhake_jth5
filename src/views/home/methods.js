@@ -30,7 +30,8 @@ export default {
       pagesize: this.pagesize,
       pageno: this.pageno,
       key_word: this.key_word,
-      tel: sessionStorage.getItem('Mob')
+      tel: sessionStorage.getItem('Mob'),
+      create_user: 322
     })
       .then(res => {
         if (res.ret === this.$statusCode.SUCCESS_CODE) {

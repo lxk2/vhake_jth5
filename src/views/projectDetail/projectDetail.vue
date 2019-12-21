@@ -38,20 +38,69 @@
       div.item
         div.left 业务员名称：
         div.right {{ netData.login_name }}
+      // div.item
+      //   div.left 已收款：
+      //   div.right {{ netData.sum_money || 0 }}元
+      // div.item
+      //   div.left 回款进度：
+      //   div.right {{ netData.back_rate }}
+
+    div.title 开票记录
+    div.content(v-for="(item, index) in netData.commission_one" :key="item.id" :class="{ cell: index < netData.commission_one.length - 1 }")
       div.item
-        div.left 已收款：
-        div.right {{ netData.sum_money || 0 }}元
+        div.left 开票金额：
+        div.right {{ netData.open_money || 0 }}元
       div.item
-        div.left 回款进度：
-        div.right {{ netData.back_rate }}
+        div.left 开票时间：
+        div.right {{ netData.open_time }}
+      div.item
+        div.left 创建人：
+        div.right {{ netData.create_user }}
+      div.item
+        div.left 创建时间：
+        div.right {{ netData.create_time }}
+
+    div.title 回款记录
+    div.content(v-for="(item, index) in netData.commission_two" :key="item.id" :class="{ cell: index < netData.commission_two.length - 1 }")
+      div.item
+        div.left 回款金额：
+        div.right {{ netData.open_money || 0 }}元
+      div.item
+        div.left 回款时间：
+        div.right {{ netData.open_time }}
+      div.item
+        div.left 回款类型：
+        div.right {{ netData.back_type === 1 ? '专用款' : '基本款' }}
+      div.item
+        div.left 创建人：
+        div.right {{ netData.create_user }}
+      div.item
+        div.left 创建时间：
+        div.right {{ netData.create_time }}
+
+    div.title 打款记录
+    div.content(v-for="(item, index) in netData.commission_three" :key="item.id" :class="{ cell: index < netData.commission_three.length - 1 }")
+      div.item
+        div.left 回款金额：
+        div.right {{ netData.open_money || 0 }}元
+      div.item
+        div.left 回款时间：
+        div.right {{ netData.open_time }}
+      div.item
+        div.left 创建人：
+        div.right {{ netData.create_user }}
+      div.item
+        div.left 创建时间：
+        div.right {{ netData.create_time }}
 
     div.btn-warp
-      a.btn 联系业务员
+      a.btn(:href="'tel:' + netData.channel_tel") 联系业务员
 </template>
 
 <script>
 import data from './data';
 import methods from './methods';
+
 export default {
   data,
   methods,
@@ -63,5 +112,5 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/styles/projectDetail.styl';
+  @import '~@/styles/projectDetail.styl';
 </style>
