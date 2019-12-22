@@ -1,6 +1,6 @@
 <template lang="pug">
   div.main
-    div.title {{ netData.contract_name }}
+    div.title 合同详情
     div.content
       div.item
         div.left 合同名称：
@@ -16,7 +16,7 @@
         div.right {{ netData.contract_price || 0 }}元
       div.item
         div.left 发票要求：
-        div.right {{ netData.bill_order === 1 ? '普票' : '专票' }}
+        div.right {{ parseInt(netData.bill_order) === 1 ? '普票' : '专票' }}
       div.item
         div.left 管理费率：
         div.right {{ netData.manage_rate }}
@@ -49,49 +49,49 @@
     div.content(v-for="(item, index) in netData.commission_one" :key="item.id" :class="{ cell: index < netData.commission_one.length - 1 }")
       div.item
         div.left 开票金额：
-        div.right {{ netData.open_money || 0 }}元
+        div.right {{ item.open_money || 0 }}元
       div.item
         div.left 开票时间：
-        div.right {{ netData.open_time }}
+        div.right {{ item.open_time }}
       div.item
         div.left 创建人：
-        div.right {{ netData.create_user }}
+        div.right {{ netData.login_name }}
       div.item
         div.left 创建时间：
-        div.right {{ netData.create_time }}
+        div.right {{ item.create_time }}
 
     div.title 回款记录
     div.content(v-for="(item, index) in netData.commission_two" :key="item.id" :class="{ cell: index < netData.commission_two.length - 1 }")
       div.item
         div.left 回款金额：
-        div.right {{ netData.open_money || 0 }}元
+        div.right {{ item.open_money || 0 }}元
       div.item
         div.left 回款时间：
-        div.right {{ netData.open_time }}
+        div.right {{ item.open_time }}
       div.item
         div.left 回款类型：
-        div.right {{ netData.back_type === 1 ? '专用款' : '基本款' }}
+        div.right {{ parseInt(item.back_type) === 1 ? '基本款' : '专用款' }}
       div.item
         div.left 创建人：
-        div.right {{ netData.create_user }}
+        div.right {{ netData.login_name }}
       div.item
         div.left 创建时间：
-        div.right {{ netData.create_time }}
+        div.right {{ item.create_time }}
 
     div.title 打款记录
     div.content(v-for="(item, index) in netData.commission_three" :key="item.id" :class="{ cell: index < netData.commission_three.length - 1 }")
       div.item
         div.left 回款金额：
-        div.right {{ netData.open_money || 0 }}元
+        div.right {{ item.open_money || 0 }}元
       div.item
         div.left 回款时间：
-        div.right {{ netData.open_time }}
+        div.right {{ item.open_time }}
       div.item
         div.left 创建人：
-        div.right {{ netData.create_user }}
+        div.right {{ netData.login_name }}
       div.item
         div.left 创建时间：
-        div.right {{ netData.create_time }}
+        div.right {{ item.create_time }}
 
     div.btn-warp
       a.btn(:href="'tel:' + netData.channel_tel") 联系业务员

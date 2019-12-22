@@ -2,21 +2,21 @@
   div
     div.userinfo
       div.avatar
-        van-image(width="100%" height="100%" round src="https://img.yzcdn.cn/vant/cat.jpeg" fit="cover")
-      div.name 周杞通 15915868898
-    div.cell
+        van-image(width="100%" height="100%" round src="https://images.http.org.cn/userlogo.png" fit="cover")
+      div.name {{ mobile }}
+    div.cell(@click="toLink(1)")
       div.left
         svg-icon(iconClass="wenhao" className="cellSvg")
         div.label 用户协议
       div.right
         van-icon(name="arrow" :style="{ fontSize: '16px' }")
-    div.cell
+    a.cell(href="tel:13336452276")
       div.left
         svg-icon(iconClass="kefu" className="cellSvg")
         div.label 客服
       div.right
-        van-icon(name="arrow" :style="{ fontSize: '16px' }")
-    div.cell
+        van-icon(name="arrow" :style="{ fontSize: '16px', color: '#333' }")
+    div.cell(@click="toLink(2)")
       div.left
         svg-icon(iconClass="gantanhao" className="cellSvg")
         div.label 关于我们
@@ -37,7 +37,12 @@ export default {
   components: {
     SvgIcon
   },
-  created() {}
+  created() {},
+  computed: {
+    mobile() {
+      return sessionStorage.getItem('Mob') || '';
+    }
+  }
 };
 </script>
 
