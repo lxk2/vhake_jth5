@@ -1,5 +1,6 @@
 <template lang="pug">
   div
+    BackTop
     div.topic#topic
       div.t-item.td 名称
       div.t-item.td 项目金额
@@ -18,14 +19,18 @@
 
 <script>
 import Vue from 'vue';
-import { PullRefresh, List } from 'vant';
+import {PullRefresh, List} from 'vant';
 import data from './data';
 import methods from './methods';
+import BackTop from '@/components/backTop';
+
 Vue.use(PullRefresh).use(List);
 export default {
   data,
   methods,
-  components: {},
+  components: {
+    BackTop
+  },
   created() {
     this.getPageData();
     this.$nextTick(() => {
@@ -42,5 +47,5 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/styles/home.styl';
+  @import '~@/styles/home.styl';
 </style>

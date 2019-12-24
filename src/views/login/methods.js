@@ -1,11 +1,11 @@
 import { login } from '@/api/user';
 export default {
-  async submitForm() {
+  submitForm() {
     if (!this.checked) {
       this.$toast.fail('请先同意用户协议');
       return false;
     }
-    await login({
+    login({
       tel: this.mobile,
       pwd: this.password
     })
