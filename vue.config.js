@@ -45,7 +45,7 @@ module.exports = {
     proxy: {
       // 配置跨域
       '/api': {
-        target: 'http://labor.lddzf.com',
+        target: 'http://htapi.jtlw.com.cn',
         ws: false,
         changeOrigin: true
         // pathRewrite: {
